@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_24_021434) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_24_181025) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -146,6 +146,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_24_021434) do
     t.string "access_token_secret"
     t.string "owner_type"
     t.index ["owner_id", "owner_type"], name: "index_connected_accounts_on_owner_id_and_owner_type"
+  end
+
+  create_table "days", force: :cascade do |t|
+    t.string "name"
+    t.datetime "theday"
+    t.text "tags"
+    t.boolean "isdone"
+    t.bigint "hasZitems_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hasZitems_id"], name: "index_days_on_hasZitems_id"
   end
 
   create_table "inbound_webhooks", force: :cascade do |t|
@@ -352,13 +363,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_24_021434) do
     t.integer "last_otp_timestep"
     t.text "otp_backup_codes"
     t.jsonb "preferences"
-    t.virtual "name", type: :string, as: "(((first_name)::text || ' '::text) || (COALESCE(last_name, ''::character varying))::text)", stored: true
+    t.virtual "name", type: :string, as: "(((first_name)::text || ' '::text) || (last_name)::text)", stored: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_users_on_invitations_count"
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
     t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by_type_and_invited_by_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "zitems", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "description"
+    t.text "tags"
+    t.boolean "isdone"
+    t.boolean "isduplicate"
+    t.string "thedate"
   end
 
   add_foreign_key "account_invitations", "accounts"

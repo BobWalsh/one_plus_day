@@ -31,7 +31,8 @@ brew services start redis
 
 Create a [new Git](https://github.com/new) repository for your project. Then you can clone Jumpstart Pro and push it to your new repository.
 
-```bash
+```bash/setup
+
 git clone git@github.com:jumpstart-pro/jumpstart-pro-rails.git myapp
 cd myapp
 git remote rename origin jumpstart-pro
