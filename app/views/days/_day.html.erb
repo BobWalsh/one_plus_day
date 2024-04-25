@@ -1,0 +1,37 @@
+<div id="<%= dom_id item %>">
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Day</p>
+    <%= day.day_id %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Name</p>
+    <%= Day.name %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Isdone</p>
+    <%= Day.isdone %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Hasslot</p>
+    <%= Day.hasslot %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Notes</p>
+    <%= Day.notes %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Url</p>
+    <%= Day.url %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Tags</p>
+    <%= Day.tags %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Slot number</p>
+    <%= Day.slot_number %>
+  </div>
+  <% if action_name != "show" %>
+    <%= link_to "View this Day", item, class: "btn btn-secondary" %>
+  <% end %>
+</div>
