@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_24_181025) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_25_172218) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -162,6 +162,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_24_181025) do
   create_table "inbound_webhooks", force: :cascade do |t|
     t.integer "status", default: 0, null: false
     t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.integer "day_id"
+    t.string "name"
+    t.boolean "isdone"
+    t.integer "hasslot"
+    t.text "notes"
+    t.string "url"
+    t.text "tags"
+    t.integer "slot_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -372,15 +385,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_24_181025) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "zitems", force: :cascade do |t|
+  create_table "yitems", force: :cascade do |t|
+    t.integer "day_id"
+    t.string "name"
+    t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
-    t.string "description"
-    t.text "tags"
-    t.boolean "isdone"
-    t.boolean "isduplicate"
-    t.string "thedate"
   end
 
   add_foreign_key "account_invitations", "accounts"

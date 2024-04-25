@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  day_id: 1
+  name: MyString
+  isdone: false
+  hasslot: 1
+  notes: MyText
+  url: MyString
+  tags: MyText
+  slot_number: 1
+
+two:
+  day_id: 1
+  name: MyString
+  isdone: false
+  hasslot: 1
+  notes: MyText
+  url: MyString
+  tags: MyText
+  slot_number: 1
